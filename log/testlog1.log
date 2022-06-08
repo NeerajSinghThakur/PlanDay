@@ -1,0 +1,4 @@
+2022-06-08 16:11:13,669 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 102.0.5005.61 (resolved driver for Chrome 102)
+2022-06-08 16:11:13,708 [main] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as /Users/nthakur/.cache/selenium/chromedriver/mac64/102.0.5005.61/chromedriver
+2022-06-08 16:11:26,146 [main] INFO ebanking - User name is provided
+2022-06-08 16:11:26,233 [main] INFO ebanking - Passsword is provided
