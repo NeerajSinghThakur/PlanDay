@@ -14,9 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import com.inetbanking.utilities.ReadConfig;
 
@@ -34,8 +32,8 @@ public class BaseClass {
 	public static Logger logger;
 	
 	@Parameters("browser")
-	@BeforeClass
-	public void setup(String br)
+	@BeforeMethod
+	public void setup(@Optional("chrome") String br)
 	{			
 		logger = Logger.getLogger("ebanking");
 		PropertyConfigurator.configure("Log4j.properties");
@@ -43,27 +41,30 @@ public class BaseClass {
 		if(br.equals("chrome"))
 		{
 			//System.setProperty("webdriver.chrome.driver",readconfig.getChromePath());
-			WebDriverManager.chromedriver().setup();
-			driver=new ChromeDriver();
+//			WebDriverManager.chromedriver().setup();
+			driver= new ChromeDriver();
 		}
 		else if(br.equals("firefox"))
 		{
 			//System.setProperty("webdriver.gecko.driver",readconfig.getFirefoxPath());
-			WebDriverManager.firefoxdriver().setup();
+			//WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		}
 		else if(br.equals("ie"))
 		{
 			//System.setProperty("webdriver.ie.driver",readconfig.getIEPath());
-			WebDriverManager.edgedriver().setup();
+			//WebDriverManager.edgedriver().setup();
 			driver = new InternetExplorerDriver();
+		}
+		else {
+			driver= new ChromeDriver();
 		}
 		
 		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		driver.get(baseURL);
 	}
 	
-	@AfterClass
+	@AfterMethod
 	public void tearDown()
 	{
 		driver.quit();
